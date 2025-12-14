@@ -1,12 +1,15 @@
 package org.weblabs.wl4.service;
 
 import org.springframework.stereotype.Service;
+import org.weblabs.wl4.dto.PointCheckRequest;
 import org.weblabs.wl4.dto.PointCheckResponse;
 
-@Service
-public class CheckService {
+import lombok.val;
 
-    public boolean isPointInArea(double r, double x, double y) {
+@Service
+public class AreaCheckService {
+
+    protected boolean isPointInArea(double r, double x, double y) {
         if (x == 0) {
             return -r / 2 <= y && y <= r;
         } else if (y == 0) {
@@ -24,8 +27,12 @@ public class CheckService {
         return false;
     }
 
-    public PointCheckResponse checkPointWithDetails(double r, double x, double y) {
-        boolean result = isPointInArea(r, x, y);
+    public PointCheckResponse checkPoint(PointCheckRequest checkRequest) {
+        val r = checkRequest.getR();
+        val x = checkRequest.getX();
+        val y = checkRequest.getY();
+
+        val result = isPointInArea(r, x, y);
         return PointCheckResponse.of(r, x, y, result);
     }
 }
