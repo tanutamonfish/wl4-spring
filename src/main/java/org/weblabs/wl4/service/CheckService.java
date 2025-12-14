@@ -1,6 +1,7 @@
 package org.weblabs.wl4.service;
 
 import org.springframework.stereotype.Service;
+import org.weblabs.wl4.dto.PointCheckResponse;
 
 @Service
 public class CheckService {
@@ -21,5 +22,10 @@ public class CheckService {
         }
 
         return false;
+    }
+
+    public PointCheckResponse checkPointWithDetails(double r, double x, double y) {
+        boolean result = isPointInArea(r, x, y);
+        return PointCheckResponse.of(r, x, y, result);
     }
 }
