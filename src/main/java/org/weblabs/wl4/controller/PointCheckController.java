@@ -47,14 +47,18 @@ public class PointCheckController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "checkedAt") String sortBy,
-            @RequestParam(defaultValue = "DESC") String direction) {
+            @RequestParam(defaultValue = "DESC") String direction,
+            @RequestParam(required = false) Double r) {
 
         User user = userService.getByEmail(userDetails.getUsername());
 
         Sort sort = direction.equalsIgnoreCase("ASC") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
 
         PageRequest pageRequest = PageRequest.of(page, size, sort);
-        Page<PointCheckDto> points = pointCheckService.getUserPoints(user.getId(), pageRequest);
+        
+        Page<PointCheckDto> points = (r != null) 
+            ? pointCheckService.getUserPointsByRadius(user.getId(), r, pageRequest)
+            : pointCheckService.getUserPoints(user.getId(), pageRequest);
 
         return ResponseEntity.ok(points);
     }

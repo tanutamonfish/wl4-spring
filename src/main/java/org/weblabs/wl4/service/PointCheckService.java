@@ -1,6 +1,7 @@
 package org.weblabs.wl4.service;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,6 +57,11 @@ public class PointCheckService {
     
     public Page<PointCheckDto> getUserPoints(Long userId, Pageable pageable) {
         return pointCheckRepository.findByUserId(userId, pageable).map(this::mapToDto);
+    }
+
+    public Page<PointCheckDto> getUserPointsByRadius(Long userId, Double radius, PageRequest pageRequest) {
+        Page<PointCheck> points = pointCheckRepository.findByUserIdAndR(userId, radius, pageRequest);
+        return points.map(this::mapToDto);
     }
     
     private PointCheckDto mapToDto(PointCheck pointCheck) {

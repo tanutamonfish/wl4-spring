@@ -31,13 +31,16 @@ public class AuthController {
     private final AuthService authService;
     private final UserService userService;
     private final JwtTokenUtil jwtTokenUtil;
-    private final boolean SECURE = true;
+    private final boolean SECURE = false;
+    private final String SAME_SITE = "Lax";
+    private final boolean HTTP_ONLY = true;
 
     private ResponseCookie createAuthCookie(String token) {
         return ResponseCookie.from("authToken", token)
-                .httpOnly(true)
+                .httpOnly(HTTP_ONLY)
                 .secure(SECURE)
-                .sameSite("Strict")
+                .sameSite(SAME_SITE)
+                // .domain("localhost")
                 .path("/")
                 .maxAge(60 * 60 * 24)
                 .build();
@@ -73,9 +76,9 @@ public class AuthController {
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(HttpServletRequest request, HttpServletResponse response) {
         ResponseCookie clearCookie = ResponseCookie.from("authToken", "")
-                .httpOnly(true)
+                .httpOnly(HTTP_ONLY)
                 .secure(SECURE)
-                .sameSite("Strict")
+                .sameSite(SAME_SITE)
                 .path("/")
                 .maxAge(0)
                 .build();
