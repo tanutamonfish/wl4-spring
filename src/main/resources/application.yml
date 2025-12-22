@@ -25,7 +25,7 @@ spring:
 
 # JWT
 jwt:
-  secret: your-secret-key-change-in-production-minimum-32-chars
+  secret: wJ+EEguDHbPvDOpOdt6Q3ip283gw39McviEPsK+CMxs
   expiration: 86400000 # 24 часа в миллисекундах
 
 server:
