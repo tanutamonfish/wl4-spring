@@ -29,7 +29,7 @@ jwt:
   expiration: 86400000 # 24 часа в миллисекундах
 
 server:
-  port: 8080
+  port: 27165
 
 logging:
   level:
