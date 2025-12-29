@@ -40,7 +40,6 @@ public class AuthController {
                 .httpOnly(HTTP_ONLY)
                 .secure(SECURE)
                 .sameSite(SAME_SITE)
-                // .domain("localhost")
                 .path("/")
                 .maxAge(60 * 60 * 24)
                 .build();

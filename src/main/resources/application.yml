@@ -26,7 +26,7 @@ spring:
 # JWT
 jwt:
   secret: wJ+EEguDHbPvDOpOdt6Q3ip283gw39McviEPsK+CMxs
-  expiration: 86400000 # 24 часа в миллисекундах
+  expiration: 86400000 # 24 hours
 
 server:
   port: 27165
