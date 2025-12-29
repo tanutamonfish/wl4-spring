@@ -1,5 +1,7 @@
 package org.weblabs.wl4.service;
 
+import java.time.LocalDateTime;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -48,6 +50,7 @@ public class PointCheckService {
         pointCheck.setY(request.getY());
         pointCheck.setHit(hit);
         pointCheck.setExecutionTimeMs(executionTime);
+        pointCheck.setCheckedAt(LocalDateTime.now());
         pointCheck.setUser(user);
         
         PointCheck saved = pointCheckRepository.save(pointCheck);
