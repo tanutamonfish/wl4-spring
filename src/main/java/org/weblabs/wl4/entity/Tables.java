@@ -5,6 +5,7 @@ import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.jooq.impl.SQLDataType;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class Tables {
@@ -22,7 +23,7 @@ public class Tables {
     public static final Field<Double> POINT_CHECKS_X = DSL.field("x", SQLDataType.DOUBLE);
     public static final Field<Double> POINT_CHECKS_Y = DSL.field("y", SQLDataType.DOUBLE);
     public static final Field<Boolean> POINT_CHECKS_HIT = DSL.field("hit", SQLDataType.BOOLEAN);
-    public static final Field<LocalDateTime> POINT_CHECKS_CHECKED_AT = DSL.field("checked_at", SQLDataType.LOCALDATETIME);
+    public static final Field<Timestamp> POINT_CHECKS_CHECKED_AT = DSL.field("checked_at", SQLDataType.TIMESTAMP);
     public static final Field<Long> POINT_CHECKS_EXECUTION_TIME_MS = DSL.field("execution_time_ms", SQLDataType.BIGINT);
     public static final Field<Long> POINT_CHECKS_USER_ID = DSL.field("user_id", SQLDataType.BIGINT);
 }

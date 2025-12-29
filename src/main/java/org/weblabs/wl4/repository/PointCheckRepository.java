@@ -27,7 +27,7 @@ public class PointCheckRepository {
                 dsl.select().from(POINT_CHECKS)
                         .where(POINT_CHECKS_USER_ID.eq(userId)));
 
-        SelectSeekStep1<Record, LocalDateTime> query = dsl.select()
+        SelectSeekStep1<Record, Timestamp> query = dsl.select()
                 .from(POINT_CHECKS)
                 .where(POINT_CHECKS_USER_ID.eq(userId))
                 .orderBy(POINT_CHECKS_CHECKED_AT.desc());
@@ -47,7 +47,7 @@ public class PointCheckRepository {
                         .where(POINT_CHECKS_USER_ID.eq(userId)
                                 .and(POINT_CHECKS_R.eq(r))));
 
-        SelectSeekStep1<Record, LocalDateTime> query = dsl.select()
+        SelectSeekStep1<Record, Timestamp> query = dsl.select()
                 .from(POINT_CHECKS)
                 .where(POINT_CHECKS_USER_ID.eq(userId)
                         .and(POINT_CHECKS_R.eq(r)))
@@ -122,13 +122,7 @@ public class PointCheckRepository {
         pointCheck.setX(record.get(POINT_CHECKS_X));
         pointCheck.setY(record.get(POINT_CHECKS_Y));
         pointCheck.setHit(record.get(POINT_CHECKS_HIT));
-        // pointCheck.setCheckedAt(record.get(POINT_CHECKS_CHECKED_AT));
-
-        Object checkedAt = record.get(POINT_CHECKS_CHECKED_AT);
-        if (checkedAt instanceof Timestamp) {
-            pointCheck.setCheckedAt(((Timestamp) checkedAt).toLocalDateTime());
-        }
-
+        pointCheck.setCheckedAt(record.get(POINT_CHECKS_CHECKED_AT));
         pointCheck.setExecutionTimeMs(record.get(POINT_CHECKS_EXECUTION_TIME_MS));
 
         User user = new User();

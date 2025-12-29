@@ -1,9 +1,10 @@
 package org.weblabs.wl4.entity;
 
+import java.sql.Timestamp;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -14,7 +15,7 @@ public class PointCheck {
     private Double x;
     private Double y;
     private Boolean hit;
-    private LocalDateTime checkedAt;
+    private Timestamp checkedAt;
     private Long executionTimeMs;
     private User user;
 }

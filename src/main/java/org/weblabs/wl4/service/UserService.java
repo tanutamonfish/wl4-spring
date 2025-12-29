@@ -1,6 +1,9 @@
 package org.weblabs.wl4.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.val;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.weblabs.wl4.entity.User;
@@ -19,7 +22,8 @@ public class UserService {
         User user = new User();
         user.setEmail(email);
         user.setPasswordHash(passwordEncoder.encode(rawPassword));
-        return userRepository.save(user);
+
+        return userRepository.insert(user);
     }
 
     public User getByEmail(String email) {

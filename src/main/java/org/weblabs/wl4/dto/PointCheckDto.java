@@ -1,7 +1,6 @@
 package org.weblabs.wl4.dto;
 
-import java.time.LocalDateTime;
-
+import java.sql.Timestamp;
 import lombok.Data;
 
 @Data
@@ -11,7 +10,7 @@ public class PointCheckDto {
     private Double x;
     private Double y;
     private Boolean hit;
-    private LocalDateTime checkedAt;
+    private Timestamp checkedAt;
     private Long executionTimeMs;
     private Long userId;
 }
